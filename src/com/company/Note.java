@@ -6,18 +6,47 @@ import java.util.Date;
 public class Note
 {
     private int Id;
-    private String Title;
     private String Text;
     private Date noteDate;
-    public Note(int id, String title, String text) {
+    private static int count;
+
+    public Note(int id, String text)
+    {
         Id = id;
-        Title = title;
         Text = text;
         this.noteDate = Calendar.getInstance().getTime(); //getting the current date
+        count++;
     }
 
-    public Note()
-    {
-        this.noteDate = Calendar.getInstance().getTime(); //getting the current date
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public String getText() {
+        return Text;
+    }
+
+    public void setText(String text) {
+        Text = text;
+    }
+
+    public Date getNoteDate() {
+        return noteDate;
+    }
+
+
+    public static void setCount(int count) {
+        Note.count = count;
+    }
+
+    @Override
+    public String toString() {
+        return  Text + '\'' +
+                '}';
     }
 }

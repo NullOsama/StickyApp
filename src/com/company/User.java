@@ -18,7 +18,8 @@ public class User
     {
     }
 
-    public String getfName() {
+    public String getfName()
+    {
         return fName;
     }
     public String getFirstLastName() {
@@ -26,32 +27,37 @@ public class User
     }
 
 
-    public void setfName(String fName) {
+    public void setfName(String fName)
+    {
         this.fName = fName;
     }
 
-    public String getlName() {
+    public String getlName()
+    {
         return lName;
     }
 
-    public void setlName(String lName) {
+    public void setlName(String lName)
+    {
         this.lName = lName;
     }
 
-    public ArrayList<Note> getNotes() {
+    public ArrayList<Note> getNotes()
+    {
         return Notes;
     }
 
-    public void setNotes(ArrayList<Note> notes) {
+    public void setNotes(ArrayList<Note> notes)
+    {
         Notes = notes;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "User{" +
                 "First Name='" + fName + '\'' +
                 ", Last Name='" + lName + '\'' +
                 '}';
     }
-
 }
