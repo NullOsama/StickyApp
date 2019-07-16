@@ -6,7 +6,7 @@ public class User
 {
     private String fName;
     private String lName;
-    private ArrayList<Note> Notes;
+    private ArrayList<Note> Notes = null
 
     public User(String fName, String lName, ArrayList<Note> notes) {
         this.fName = fName;
