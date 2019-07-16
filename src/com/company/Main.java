@@ -4,8 +4,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
@@ -36,6 +38,17 @@ public class Main {
                         System.exit(0);
                 }
             }while(true);
+    }
+
+
+    private static void printUserNotes(String name)
+    {
+        ArrayList<Note> userNotes = Server.checkUserExistance(name).getNotes();
+        for(int i = 0; i<userNotes.size(); i++)
+        {
+            System.out.println("-------------");
+            System.out.println(userNotes.get(i).toString());
+        }
     }
 
     private static void fetchUsers()

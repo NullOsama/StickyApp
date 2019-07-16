@@ -6,14 +6,14 @@ import java.util.Date;
 public class Note
 {
     private int Id;
-    private String Text;
+    private String text;
     private String  noteDate;
     private static int count = 0;
 
     public Note(int id, String text)
     {
         Id = id;
-        Text = text;
+        this.text = text;
         Calendar calendar = Calendar.getInstance();
         this.noteDate =calendar.get(Calendar.DATE) +"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get( Calendar.YEAR)+" "+ calendar.get( Calendar.HOUR)+":"+calendar.get( Calendar.MINUTE ); //getting the current date
         count++;
@@ -33,11 +33,11 @@ public class Note
     }
 
     public String getText() {
-        return Text;
+        return this.text;
     }
 
     public void setText(String text) {
-        Text = text;
+        this.text = text;
     }
 
     public String getNoteDate() {
@@ -47,8 +47,7 @@ public class Note
 
     @Override
     public String toString() {
-        return  Text + '\'' +
-                '}';
+        return  noteDate + '\n' + text;
     }
 
     public void setNoteDate(String date)
