@@ -1,9 +1,12 @@
 package com.company;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -13,20 +16,46 @@ public class Main {
 
     public static void main(String[] args)
     {
-
-        showMainMenu();
-        Select();
+//        showMainMenu();
+  //      Select();
     }
 
-    private static ArrayList<User> fetchUsers()
+    private static void fetchUsers()
     {
-        try (Stream<Path> paths = Files.walk(Paths.get("/home/you/Desktop")))
+        try (Stream<Path> paths = Files.walk(Paths.get("Resources")))
         {
-            paths.filter(Files::isRegularFile).forEach(System.out::println);
+            var stringPaths = paths.toArray();
+            for(int i = 0; i < stringPaths.length; i++)
+            {
+                File file = new File(stringPaths[i].toString());
+                Scanner sc = new Scanner(file);
+                String []name = stringPaths[i].toString().substring(9).split("_");
+
+
+                User user = new User();
+                user.setfName(name[0]);
+                user.setlName(name[1]);
+
+
+                String line = null;
+                while (sc.hasNextLine())
+                {
+                    line = sc.nextLine();
+                    if(!line.equals("\n"))
+                    {
+                        Note note = new Note();
+                        note.setNoteDate(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(line));
+                        note.setText(sc.nextLine());
+                        user.addNote(note);
+                    }
+                }
+                Server.usersList.add(user);
+            }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        return new ArrayList<User>();
     }
 
     private static void saveUser(User user)

@@ -6,14 +6,14 @@ public class User
 {
     private String fName;
     private String lName;
-    private ArrayList<Note> Notes = null;
+    private ArrayList<Note> notes = null;
     private static int count = 0;
 
     public User(String fName, String lName)
     {
         this.fName = fName;
         this.lName = lName;
-        Notes = new ArrayList<Note>();
+        notes = new ArrayList<Note>();
         count++;
     }
     public User()
@@ -28,7 +28,6 @@ public class User
     public String getFirstLastName() {
         return fName+" "+lName;
     }
-
 
     public void setfName(String fName)
     {
@@ -47,12 +46,12 @@ public class User
 
     public ArrayList<Note> getNotes()
     {
-        return Notes;
+        return notes;
     }
 
-    public void setNotes(ArrayList<Note> notes)
+    public void addNote(Note note)
     {
-        Notes = notes;
+        this.notes.add(note);
     }
 
     public static int getCount()
