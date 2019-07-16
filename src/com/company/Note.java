@@ -18,6 +18,10 @@ public class Note
         count++;
     }
 
+    public Note()
+    {
+        count++;
+    }
 
     public int getId() {
         return Id;
@@ -40,13 +44,14 @@ public class Note
     }
 
 
-    public static void setCount(int count) {
-        Note.count = count;
-    }
-
     @Override
     public String toString() {
         return  Text + '\'' +
                 '}';
+    }
+
+    public void setNoteDate(Date date)
+    {
+        this.noteDate = date;
     }
 }
