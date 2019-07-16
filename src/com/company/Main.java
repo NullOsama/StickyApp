@@ -63,7 +63,7 @@ public class Main {
                 "Please enter your full name first:");
         String firstLastName=Main.cin.nextLine();
         //check Userexistance
-        User exist=Server.checkExistance(firstLastName);
+        User exist=Server.checkUserExistance(firstLastName);
         if(exist==null)
         {
             System.out.println
