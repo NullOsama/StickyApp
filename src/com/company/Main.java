@@ -1,5 +1,8 @@
 package com.company;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +11,25 @@ public class Main {
     {
         ShowMenu();
         Select();
+    }
+    private static ArrayList<User> fetchUsers()
+    {
+        return new ArrayList<User>();
+    }
+
+    private static void saveUser(User user)
+    {
+        String userName = user.getfName() + "_" + user.getlName();
+        String userFilePath = "Resources" + "//" + userName;
+        try
+        {
+
+            File file = new File(userFilePath);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
     private static void Select()
     {
@@ -35,4 +57,5 @@ public class Main {
                 "3- View notes for a specific user\n" +
                 "4- Exit\n");
     }
+
 }
