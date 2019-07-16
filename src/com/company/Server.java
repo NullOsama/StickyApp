@@ -14,7 +14,7 @@ public final class Server {
         }
         return null;
     }
-    private static void saveUser(User user)
+    public static void saveUser(User user)
     {
         String userName = user.getfName() + "_" + user.getlName();
         String userFilePath = "Resources" + "//" + userName + ".txt";
@@ -28,15 +28,13 @@ public final class Server {
         }
     }
 
-    private static void updateUser(User user, Note note)
-    {
+    public static void updateUser(User user, Note note) {
         String userName = user.getfName() + "_" + user.getlName();
         String userFilePath = "Resources" + "//" + userName + ".txt";
 
-        try(FileWriter fw = new FileWriter(userFilePath, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-        {
+        try (FileWriter fw = new FileWriter(userFilePath, true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
             out.println(note.getNoteDate());
             out.println(note.getText());
         } catch (IOException e) {

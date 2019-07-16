@@ -47,10 +47,16 @@ public class Main {
         System.out.println("Great "+ firstName+", now please enter your last name:");
         String lastName=Main.cin.nextLine();
         //check if its exist or not
+        if(Server.checkUserExistance(firstName+" "+lastName)!=null)
+        {
+            System.out.println("This user exist :) ");
+            return;
+        }
+
         System.out.println("Nice to meet you "+firstName+" " +lastName);
         User newUser= new User(firstName,lastName);
         Server.usersList.add(newUser);
-        //Create file for the user.
+        Server.saveUser(newUser);
         System.out.println("Click Enter to return to main menu");
         Main.cin.nextLine();
 
@@ -82,7 +88,8 @@ public class Main {
         String newNote=Main.cin.nextLine();
         System.out.println("################");
         //Add Node
-
+        Note new_Note=new Note(exist.noteCount()+1,newNote);
+        exist.addNote(new_Note);
         System.out.println
                 (
                 "Your note has been well received, 1 second while saving it ….\n" +
