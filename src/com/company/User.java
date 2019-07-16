@@ -6,7 +6,7 @@ public class User
 {
     private String fName;
     private String lName;
-    private ArrayList<Note> Notes = null
+    private ArrayList<Note> Notes = null;
 
     public User(String fName, String lName, ArrayList<Note> notes)
     {
@@ -42,4 +42,13 @@ public class User
     public void setNotes(ArrayList<Note> notes) {
         Notes = notes;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "First Name='" + fName + '\'' +
+                ", Last Name='" + lName + '\'' +
+                '}';
+    }
+
 }
