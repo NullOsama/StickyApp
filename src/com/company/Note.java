@@ -15,6 +15,7 @@ public class Note
         Id = id;
         Text = text;
         this.noteDate = Calendar.getInstance().getTime(); //getting the current date
+        count++;
     }
 
 

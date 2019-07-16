@@ -16,13 +16,16 @@ public class User
     }
     public User()
     {
-
     }
 
     public String getfName()
     {
         return fName;
     }
+    public String getFirstLastName() {
+        return fName+" "+lName;
+    }
+
 
     public void setfName(String fName)
     {
