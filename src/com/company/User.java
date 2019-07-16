@@ -28,17 +28,14 @@ public class User
     public String getFirstLastName() {
         return fName+" "+lName;
     }
-
     public void setfName(String fName)
     {
         this.fName = fName;
     }
-
     public String getlName()
     {
         return lName;
     }
-
     public void setlName(String lName)
     {
         this.lName = lName;
@@ -53,7 +50,6 @@ public class User
     {
         this.notes.add(note);
     }
-
     public static int getCount()
     {
         return count;
@@ -66,5 +62,8 @@ public class User
                 "First Name='" + fName + '\'' +
                 ", Last Name='" + lName + '\'' +
                 '}';
+    }
+    public int noteCount(){
+        return Notes.size();
     }
 }
