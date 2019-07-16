@@ -32,6 +32,7 @@ public class Main {
                         break;
 
                     case 3:
+                        printUserNotes();
                         break;
 
                     default:
@@ -41,14 +42,29 @@ public class Main {
     }
 
 
-    private static void printUserNotes(String name)
+    private static void printUserNotes()
     {
+        System.out.println("Retrieve your notes? Absolutely! \n" +
+                "Please let know your full name first: \n" );
+                String name = Main.cin.nextLine();
+
         ArrayList<Note> userNotes = Server.checkUserExistance(name).getNotes();
-        for(int i = 0; i<userNotes.size(); i++)
+        if(!userNotes.equals(null))
         {
-            System.out.println("-------------");
-            System.out.println(userNotes.get(i).toString());
+            System.out.println("Found it!\n" +
+                    "Here are your stored notes:\n");
+            for (int i = 0; i < userNotes.size(); i++)
+            {
+                System.out.println("-------------");
+                System.out.println(userNotes.get(i).toString());
+            }
         }
+        else
+        {
+            System.out.println("Umm, can’t find any saved notes for you.");
+        }
+        System.out.println("Click Enter to return to main menu");
+        Main.cin.nextLine();
     }
 
     private static void fetchUsers()

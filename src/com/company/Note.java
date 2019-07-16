@@ -47,7 +47,7 @@ public class Note
 
     @Override
     public String toString() {
-        return  noteDate + '\n' + text;
+        return  noteDate + '\n' + text + '\n';
     }
 
     public void setNoteDate(String date)
