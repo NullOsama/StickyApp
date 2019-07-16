@@ -15,7 +15,6 @@ public class Main {
     {
 
         showMainMenu();
-        Select();
     }
 
     private static ArrayList<User> fetchUsers()
@@ -29,53 +28,6 @@ public class Main {
         return new ArrayList<User>();
     }
 
-    private static void saveUser(User user)
-    {
-        String userName = user.getfName() + "_" + user.getlName();
-        String userFilePath = "Resources" + "//" + userName + ".txt";
-        try {
-            File file = new File(userFilePath);
-            if(!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void updateUser(User user, Note note)
-    {
-        String userName = user.getfName() + "_" + user.getlName();
-        String userFilePath = "Resources" + "//" + userName + ".txt";
-
-        try(FileWriter fw = new FileWriter(userFilePath, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-        {
-            out.println(note.getNoteDate());
-            out.println(note.getText());
-
-        } catch (IOException e) {
-            //exception handling left as an exercise for the reader
-            e.printStackTrace();
-        }
-    }
-
-    private static void Select()
-    {
-
-        System.out.println("What Is Your Choice: ");
-        String Choice = Main.cin.nextLine();
-        switch (Choice)
-        {
-            case "1":break;
-            case "2":break;
-            case "3":break;
-            case "4":
-                System.exit(0);
-                break;
-        }
-    }
 
 
     private static void showMainMenu()
@@ -95,10 +47,16 @@ public class Main {
         System.out.println("Great "+ firstName+", now please enter your last name:");
         String lastName=Main.cin.nextLine();
         //check if its exist or not
+        if(Server.checkUserExistance(firstName+" "+lastName)!=null)
+        {
+            System.out.println("This user exist :) ");
+            return;
+        }
+
         System.out.println("Nice to meet you "+firstName+" " +lastName);
         User newUser= new User(firstName,lastName);
         Server.usersList.add(newUser);
-        //Create file for the user.
+        Server.saveUser(newUser);
         System.out.println("Click Enter to return to main menu");
         Main.cin.nextLine();
 
@@ -130,7 +88,8 @@ public class Main {
         String newNote=Main.cin.nextLine();
         System.out.println("################");
         //Add Node
-
+        Note new_Note=new Note(exist.noteCount()+1,newNote);
+        exist.addNote(new_Note);
         System.out.println
                 (
                 "Your note has been well received, 1 second while saving it ….\n" +
