@@ -21,6 +21,10 @@ public class User
     public String getfName() {
         return fName;
     }
+    public String getFirstLastName() {
+        return fName+" "+lName;
+    }
+
 
     public void setfName(String fName) {
         this.fName = fName;

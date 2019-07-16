@@ -4,10 +4,14 @@ import java.util.ArrayList;
 
 public class Server {
     static ArrayList<User> usersList;
-    static boolean checkExistance(String user)
+    static User checkExistance(String userFullName)
     {
-
-        return false;
+        for (int i=0 ;i<usersList.size();i++)
+        {
+            if(usersList.get(i).getFirstLastName()==userFullName)
+                return usersList.get(i);
+        }
+        return null;
     }
 
 }

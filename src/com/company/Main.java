@@ -63,8 +63,8 @@ public class Main {
                 "Please enter your full name first:");
         String firstLastName=Main.cin.nextLine();
         //check Userexistance
-        Boolean exist=Server.checkExistance(firstLastName);
-        if(exist==false)
+        User exist=Server.checkExistance(firstLastName);
+        if(exist==null)
         {
             System.out.println
                     (
@@ -73,7 +73,6 @@ public class Main {
                     "Click Enter to return to main menu"
                     );
             return ;
-
         }
         System.out.println
                 (
@@ -83,6 +82,8 @@ public class Main {
                 );
         String newNote=Main.cin.nextLine();
         System.out.println("################");
+        //Add Node
+
         System.out.println
                 (
                 "Your note has been well received, 1 second while saving it ….\n" +
