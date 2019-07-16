@@ -1,7 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,17 +19,34 @@ public class Main {
     private static void saveUser(User user)
     {
         String userName = user.getfName() + "_" + user.getlName();
-        String userFilePath = "Resources" + "//" + userName;
-        try
-        {
-
+        String userFilePath = "Resources" + "//" + userName + ".txt";
+        try {
             File file = new File(userFilePath);
-        }
-        catch (Exception e)
-        {
+            if(!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private static void updateUser(User user, Note note)
+    {
+        String userName = user.getfName() + "_" + user.getlName();
+        String userFilePath = "Resources" + "//" + userName + ".txt";
+
+        try(FileWriter fw = new FileWriter(userFilePath, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println(note.getNoteDate());
+            out.println(note.getText());
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+            e.printStackTrace();
+        }
+    }
+
     private static void Select()
     {
         Scanner cin = new Scanner(System.in);
