@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Scanner;
 
 public class Main {
@@ -45,13 +47,48 @@ public class Main {
         String firstName=Main.cin.nextLine();
         System.out.println("Great "+ firstName+", now please enter your last name:");
         String lastName=Main.cin.nextLine();
-        //check 
+        //check if its exist or not
         System.out.println("Nice to meet you "+firstName+" " +lastName);
-        System.out.println("Click Enter to return to main menu");
-        Main.cin.nextLine();
         User newUser= new User(firstName,lastName);
         Server.usersList.add(newUser);
         //Create file for the user.
+        System.out.println("Click Enter to return to main menu");
+        Main.cin.nextLine();
 
+    }
+    private static void addNoteUserMenu()
+    {
+        System.out.println(
+                "Let’s add a new note ...\n" +
+                "Please enter your full name first:");
+        String firstLastName=Main.cin.nextLine();
+        //check Userexistance
+        Boolean exist=Server.checkExistance(firstLastName);
+        if(exist==false)
+        {
+            System.out.println
+                    (
+                    "\nOh! Sorry the user name was not found, please check the name again and if this is your first time here," +
+                            " please go ahead and create a new user from the main menu ...\n" +
+                    "Click Enter to return to main menu"
+                    );
+            return ;
+
+        }
+        System.out.println
+                (
+                "Your record is found, I’m now opening your file ….\n" +
+                "Ready!\n" +
+                "Please enter your note:"
+                );
+        String newNote=Main.cin.nextLine();
+        System.out.println("################");
+        System.out.println
+                (
+                "Your note has been well received, 1 second while saving it ….\n" +
+                "Done!\n"
+                );
+        System.out.println("Click Enter to return to main menu");
+        Main.cin.nextLine();
     }
 }
