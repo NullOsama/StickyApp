@@ -45,10 +45,13 @@ public class Main {
         String firstName=Main.cin.nextLine();
         System.out.println("Great "+ firstName+", now please enter your last name:");
         String lastName=Main.cin.nextLine();
+        //check 
         System.out.println("Nice to meet you "+firstName+" " +lastName);
         System.out.println("Click Enter to return to main menu");
         Main.cin.nextLine();
         User newUser= new User(firstName,lastName);
+        Server.usersList.add(newUser);
+        //Create file for the user.
 
     }
 }
