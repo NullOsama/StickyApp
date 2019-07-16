@@ -30,6 +30,23 @@ public class Main {
         }
     }
 
+    private static void updateUser(User user, Note note)
+    {
+        String userName = user.getfName() + "_" + user.getlName();
+        String userFilePath = "Resources" + "//" + userName + ".txt";
+
+        try(FileWriter fw = new FileWriter(userFilePath, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println(note.getNoteDate());
+            out.println(note.getText());
+        } catch (IOException e) {
+            //exception handling left as an exercise for the reader
+            e.printStackTrace();
+        }
+    }
+
     private static void Select()
     {
         Scanner cin = new Scanner(System.in);
