@@ -15,7 +15,6 @@ public class Main {
     {
 
         showMainMenu();
-        Select();
     }
 
     private static ArrayList<User> fetchUsers()
@@ -29,53 +28,6 @@ public class Main {
         return new ArrayList<User>();
     }
 
-    private static void saveUser(User user)
-    {
-        String userName = user.getfName() + "_" + user.getlName();
-        String userFilePath = "Resources" + "//" + userName + ".txt";
-        try {
-            File file = new File(userFilePath);
-            if(!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void updateUser(User user, Note note)
-    {
-        String userName = user.getfName() + "_" + user.getlName();
-        String userFilePath = "Resources" + "//" + userName + ".txt";
-
-        try(FileWriter fw = new FileWriter(userFilePath, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter out = new PrintWriter(bw))
-        {
-            out.println(note.getNoteDate());
-            out.println(note.getText());
-
-        } catch (IOException e) {
-            //exception handling left as an exercise for the reader
-            e.printStackTrace();
-        }
-    }
-
-    private static void Select()
-    {
-
-        System.out.println("What Is Your Choice: ");
-        String Choice = Main.cin.nextLine();
-        switch (Choice)
-        {
-            case "1":break;
-            case "2":break;
-            case "3":break;
-            case "4":
-                System.exit(0);
-                break;
-        }
-    }
 
 
     private static void showMainMenu()
