@@ -64,6 +64,6 @@ public class User
                 '}';
     }
     public int noteCount(){
-        return Notes.size();
+        return notes.size();
     }
 }

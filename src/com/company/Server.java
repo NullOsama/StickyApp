@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public final class Server {
-    static ArrayList<User> usersList;
+    static ArrayList<User> usersList = new ArrayList<>();
     static User checkUserExistance(String userFullName)
     {
         for (int i=0 ;i<usersList.size();i++)
@@ -37,6 +37,7 @@ public final class Server {
              PrintWriter out = new PrintWriter(bw)) {
             out.println(note.getNoteDate());
             out.println(note.getText());
+            out.print("\n");
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
             e.printStackTrace();

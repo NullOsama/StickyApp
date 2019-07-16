@@ -1,22 +1,41 @@
 package com.company;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class Main {
     public static  Scanner cin= new Scanner(System.in);
 
-    public static void main(String[] args)
-    {
-        showMainMenu();
+    public static void main(String[] args) {
+         int choice;
+
+            do {
+                showMainMenu();
+                choice = cin.nextInt();
+                cin.nextLine();
+                switch (choice)
+                {
+                    case 1:
+                        showNewUserMenu();
+                        break;
+
+                    case 2:
+                        addNoteUserMenu();
+                        break;
+
+                    case 3:
+                        break;
+
+                    default:
+                        System.exit(0);
+                }
+            }while(true);
     }
 
     private static void fetchUsers()
@@ -119,6 +138,7 @@ public class Main {
         //Add Node
         Note new_Note=new Note(exist.noteCount()+1,newNote);
         exist.addNote(new_Note);
+        Server.updateUser(exist, new_Note);
         System.out.println
                 (
                 "Your note has been well received, 1 second while saving it ….\n" +
