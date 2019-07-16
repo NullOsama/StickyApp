@@ -8,7 +8,7 @@ public class Note
     private int Id;
     private String Text;
     private Date noteDate;
-    private static int count;
+    private static int count = 0;
 
     public Note(int id, String text)
     {

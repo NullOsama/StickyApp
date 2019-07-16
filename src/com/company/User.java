@@ -7,15 +7,18 @@ public class User
     private String fName;
     private String lName;
     private ArrayList<Note> Notes = null;
+    private static int count = 0;
 
     public User(String fName, String lName)
     {
         this.fName = fName;
         this.lName = lName;
         Notes = new ArrayList<Note>();
+        count++;
     }
     public User()
     {
+        count++;
     }
 
     public String getfName()
@@ -50,6 +53,11 @@ public class User
     public void setNotes(ArrayList<Note> notes)
     {
         Notes = notes;
+    }
+
+    public static int getCount()
+    {
+        return count;
     }
 
     @Override

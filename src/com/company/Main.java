@@ -1,21 +1,31 @@
 package com.company;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Main {
-    static public  Scanner cin;
-    static{
-        Scanner cin = new Scanner(System.in);
-    }
+    public static  Scanner cin= new Scanner(System.in);
+
     public static void main(String[] args)
     {
+
         showMainMenu();
         Select();
     }
+
     private static ArrayList<User> fetchUsers()
     {
+        try (Stream<Path> paths = Files.walk(Paths.get("/home/you/Desktop")))
+        {
+            paths.filter(Files::isRegularFile).forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return new ArrayList<User>();
     }
 
@@ -44,6 +54,7 @@ public class Main {
         {
             out.println(note.getNoteDate());
             out.println(note.getText());
+
         } catch (IOException e) {
             //exception handling left as an exercise for the reader
             e.printStackTrace();
