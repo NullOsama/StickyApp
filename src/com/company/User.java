@@ -8,15 +8,14 @@ public class User
     private String lName;
     private ArrayList<Note> Notes = null;
 
-    public User(String fName, String lName, ArrayList<Note> notes)
+    public User(String fName, String lName)
     {
         this.fName = fName;
         this.lName = lName;
-        Notes = notes;
+        Notes = new ArrayList<Note>();
     }
     public User()
     {
-
     }
 
     public String getfName() {

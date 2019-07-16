@@ -9,7 +9,6 @@ public class Note
     private String Title;
     private String Text;
     private Date noteDate;
-
     public Note(int id, String title, String text) {
         Id = id;
         Title = title;
