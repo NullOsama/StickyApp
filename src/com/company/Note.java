@@ -7,14 +7,15 @@ public class Note
 {
     private int Id;
     private String Text;
-    private Date noteDate;
+    private String  noteDate;
     private static int count = 0;
 
     public Note(int id, String text)
     {
         Id = id;
         Text = text;
-        this.noteDate = Calendar.getInstance().getTime(); //getting the current date
+        Calendar calendar = Calendar.getInstance();
+        this.noteDate =calendar.get(Calendar.DATE) +"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get( Calendar.YEAR)+" "+ calendar.get( Calendar.HOUR)+":"+calendar.get( Calendar.MINUTE ); //getting the current date
         count++;
     }
 
@@ -39,7 +40,7 @@ public class Note
         Text = text;
     }
 
-    public Date getNoteDate() {
+    public String getNoteDate() {
         return noteDate;
     }
 
@@ -50,7 +51,7 @@ public class Note
                 '}';
     }
 
-    public void setNoteDate(Date date)
+    public void setNoteDate(String date)
     {
         this.noteDate = date;
     }

@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
          int choice;
-
+            fetchUsers();
             do {
                 showMainMenu();
                 choice = cin.nextInt();
@@ -43,16 +43,16 @@ public class Main {
         try (Stream<Path> paths = Files.walk(Paths.get("Resources")))
         {
             var stringPaths = paths.toArray();
-            for(int i = 0; i < stringPaths.length; i++)
+            for(int i = 1; i < stringPaths.length; i++)
             {
                 File file = new File(stringPaths[i].toString());
                 Scanner sc = new Scanner(file);
-                String []name = stringPaths[i].toString().substring(9).split("_");
+                String []name = stringPaths[i].toString().substring(10).split("_");
 
 
                 User user = new User();
                 user.setfName(name[0]);
-                user.setlName(name[1]);
+                user.setlName(name[1].substring(0,name[1].length()-4));
 
 
                 String line = null;
@@ -62,7 +62,7 @@ public class Main {
                     if(!line.equals("\n"))
                     {
                         Note note = new Note();
-                        note.setNoteDate(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(line));
+                        note.setNoteDate(line);
                         note.setText(sc.nextLine());
                         user.addNote(note);
                     }
@@ -70,8 +70,6 @@ public class Main {
                 Server.usersList.add(user);
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
@@ -95,6 +93,11 @@ public class Main {
         System.out.println("Great "+ firstName+", now please enter your last name:");
         String lastName=Main.cin.nextLine();
         //check if its exist or not
+        if(firstName.indexOf('_')!= -1  || lastName.indexOf('_')!=-1)
+        {
+            System.out.println("Are you kidding me :( ");
+            return ;
+        }
         if(Server.checkUserExistance(firstName+" "+lastName)!=null)
         {
             System.out.println("This user exist :) ");
@@ -134,6 +137,11 @@ public class Main {
                 "Please enter your note:"
                 );
         String newNote=Main.cin.nextLine();
+        if(newNote.trim().equals(""))
+            {
+                System.out.println("Are you kidding me ");
+                return ;
+            }
         System.out.println("################");
         //Add Node
         Note new_Note=new Note(exist.noteCount()+1,newNote);

@@ -19,6 +19,8 @@ public class User
     public User()
     {
         count++;
+        notes = new ArrayList<Note>();
+
     }
 
     public String getfName()
