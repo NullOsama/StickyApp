@@ -47,8 +47,13 @@ public class Main {
         System.out.println("Retrieve your notes? Absolutely! \n" +
                 "Please let know your full name first: \n" );
                 String name = Main.cin.nextLine();
-
-        ArrayList<Note> userNotes = Server.checkUserExistance(name).getNotes();
+        User exist=Server.checkUserExistance(name);
+        if(exist==null)
+        {
+            System.out.println("User Not Found");
+            return;
+        }
+        ArrayList<Note> userNotes = exist.getNotes();
         if(!userNotes.equals(null))
         {
             System.out.println("Found it!\n" +
@@ -85,7 +90,7 @@ public class Main {
 
 
                 String line = null;
-                while (sc.hasNextLine())
+                while (sc.hasNext())
                 {
                     line = sc.nextLine();
                     if(!line.equals("\n"))
