@@ -9,13 +9,48 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 public class Main {
+    public static void printAppName(int times,int waitperiod){
+        String colors[]={"\u001B[33m","\u001B[31m","\u001B[32m","\u001B[34m","\u001B[33m" };
+        for(int i=0;i<times;i++)
+        {
+            System.out.println(colors[i%colors.length]+"                                                                                                 \n" +
+                    " ad88888ba        88            88                      888b      88                             \n" +
+                    "d8\"     \"8b ,d    \"\"            88                      8888b     88              ,d             \n" +
+                    "Y8,         88                  88                      88 `8b    88              88             \n" +
+                    "`Y8aaaaa, MM88MMM 88  ,adPPYba, 88   ,d8 8b       d8    88  `8b   88  ,adPPYba, MM88MMM ,adPPYba,\n" +
+                    "  `\"\"\"\"\"8b, 88    88 a8\"     \"\" 88 ,a8\"  `8b     d8'    88   `8b  88 a8\"     \"8a  88   a8P_____88\n" +
+                    "        `8b 88    88 8b         8888[     `8b   d8'     88    `8b 88 8b       d8  88   8PP\"\"\"\"\"\"\"\n" +
+                    "Y8a     a8P 88,   88 \"8a,   ,aa 88`\"Yba,   `8b,d8'      88     `8888 \"8a,   ,a8\"  88,  \"8b,   ,aa\n" +
+                    " \"Y88888P\"  \"Y888 88  `\"Ybbd8\"' 88   `Y8a    Y88'       88      `888  `\"YbbdP\"'   \"Y888 `\"Ybbd8\"'\n" +
+                    "                                             d8'                                                 \n" +
+                    "                                            d8'                                                  \n");
+            try{TimeUnit.MILLISECONDS.sleep(waitperiod);}catch (Exception e){};
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
+        System.out.println(colors[2]+"                                                                                                 \n" +
+                " ad88888ba        88            88                      888b      88                             \n" +
+                "d8\"     \"8b ,d    \"\"            88                      8888b     88              ,d             \n" +
+                "Y8,         88                  88                      88 `8b    88              88             \n" +
+                "`Y8aaaaa, MM88MMM 88  ,adPPYba, 88   ,d8 8b       d8    88  `8b   88  ,adPPYba, MM88MMM ,adPPYba,\n" +
+                "  `\"\"\"\"\"8b, 88    88 a8\"     \"\" 88 ,a8\"  `8b     d8'    88   `8b  88 a8\"     \"8a  88   a8P_____88\n" +
+                "        `8b 88    88 8b         8888[     `8b   d8'     88    `8b 88 8b       d8  88   8PP\"\"\"\"\"\"\"\n" +
+                "Y8a     a8P 88,   88 \"8a,   ,aa 88`\"Yba,   `8b,d8'      88     `8888 \"8a,   ,a8\"  88,  \"8b,   ,aa\n" +
+                " \"Y88888P\"  \"Y888 88  `\"Ybbd8\"' 88   `Y8a    Y88'       88      `888  `\"YbbdP\"'   \"Y888 `\"Ybbd8\"'\n" +
+                "                                             d8'                                                 \n" +
+                "                                            d8'                                                  \n");
+
+
+    }
     public static  Scanner cin= new Scanner(System.in);
 
     public static void main(String[] args) {
          int choice;
+        printAppName(10,100);
             fetchUsers();
             do {
                 showMainMenu();
@@ -36,7 +71,7 @@ public class Main {
                         break;
 
                     default:
-                        System.out.println("\u001B[30m Goodby");
+                        System.out.println("\u001B[30m Goodbye");
                         System.exit(0);
                 }
             }while(true);
@@ -93,7 +128,7 @@ public class Main {
                 while (sc.hasNext())
                 {
                     line = sc.nextLine();
-                    if(!line.equals("\n"))
+                    if(!line.trim().equals(""))
                     {
                         Note note = new Note();
                         note.setNoteDate(line);
@@ -112,12 +147,12 @@ public class Main {
 
     private static void showMainMenu()
     {
-        System.out.println("\u001B[30mWelcome to the brand new “Sticky Notes”!\n" +
+        System.out.println("\u001B[32mWelcome to the brand new \"Sticky Notes\"!\n" +
                 "Here is the list of operation this program offers:\n" +
-                "1- Add new user\n" +
-                "2- Add new note\n" +
-                "3- View notes for a specific user\n" +
-                "4- Exit\n\u001B[0m");
+                "\u001B[33m1- Add new user\n" +
+                "\u001B[36m2- Add new note\n" +
+                "\u001B[35m3- View notes for a specific user\n" +
+                "\u001B[37m4- Exit\n\u001B[0m");
     }
     private static void showNewUserMenu()
     {
@@ -125,12 +160,12 @@ public class Main {
         System.out.println("\u001B[36mWelcome aboard new user!\n");
         System.out.println("Please let me know your first name:");
         String firstName=Main.cin.nextLine();
-        System.out.println("Great "+ firstName+", now please enter your last name:");
+        System.out.println("\u001B[32mGreat "+ firstName+", now please enter your last name:");
         String lastName=Main.cin.nextLine();
         //check if its exist or not
         if(firstName.indexOf('_')!= -1  || lastName.indexOf('_')!=-1)
         {
-            System.out.println("Are you kidding me :( ");
+            System.out.println("\u001B[31mAre you kidding with me :( ");
             return ;
         }
         if(Server.checkUserExistance(firstName+" "+lastName)!=null)
@@ -139,7 +174,7 @@ public class Main {
             return;
         }
 
-        System.out.println("Nice to meet you "+firstName+" " +lastName);
+        System.out.println(" \u001B[31mNice to meet you "+firstName+" " +lastName);
         User newUser= new User(firstName,lastName);
         Server.usersList.add(newUser);
         Server.saveUser(newUser);
@@ -159,7 +194,7 @@ public class Main {
         {
             System.out.println
                     (
-                    "\nOh! Sorry the user name was not found, please check the name again and if this is your first time here," +
+                    "\u001B[31m\nOh! Sorry the user name was not found, please check the name again and if this is your first time here," +
                             " please go ahead and create a new user from the main menu ...\n" +
                     "Click Enter to return to main menu"
                     );
@@ -167,9 +202,9 @@ public class Main {
         }
         System.out.println
                 (
-                "Your record is found, I’m now opening your file ….\n" +
+                "\u001B[36mYour record is found, I’m now opening your file ….\n" +
                 "Ready!\n" +
-                "Please enter your note:"
+                "Please enter your note:\u001B[32m"
                 );
         String newNote=Main.cin.nextLine();
         if(newNote.trim().equals(""))
@@ -184,7 +219,7 @@ public class Main {
         Server.updateUser(exist, new_Note);
         System.out.println
                 (
-                "Your note has been well received, 1 second while saving it ….\n" +
+                "\u001B[35mYour note has been well received, 1 second while saving it ….\n" +
                 "Done!\n"
                 );
         System.out.println("Click Enter to return to main menu");
