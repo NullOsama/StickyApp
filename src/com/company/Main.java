@@ -28,9 +28,9 @@ public class Main {
                     " \"Y88888P\"  \"Y888 88  `\"Ybbd8\"' 88   `Y8a    Y88'       88      `888  `\"YbbdP\"'   \"Y888 `\"Ybbd8\"'\n" +
                     "                                             d8'                                                 \n" +
                     "                                            d8'                                                  \n");
-            try{TimeUnit.MILLISECONDS.sleep(waitperiod);}catch (Exception e){};
+            try{TimeUnit.MILLISECONDS.sleep(waitperiod);}catch (Exception e){}
             System.out.print("\033[H\033[2J");
-            System.out.flush();
+            //System.out.flush();
         }
         System.out.println(colors[2]+"                                                                                                 \n" +
                 " ad88888ba        88            88                      888b      88                             \n" +
@@ -49,9 +49,9 @@ public class Main {
     public static  Scanner cin= new Scanner(System.in);
 
     public static void main(String[] args) {
-         int choice;
+        int choice;
+        createResourcesIfNotExist();
         printAppName(10,100);
-            fetchUsers();
             do {
                 showMainMenu();
                 choice = cin.nextInt();
@@ -75,9 +75,27 @@ public class Main {
                         System.exit(0);
                 }
             }while(true);
+
+
     }
 
+    private static void createResourcesIfNotExist()
+    {
+        String resourcesPath = "./Resources";
 
+        Path path = Paths.get(resourcesPath);
+        boolean isDir = Files.isDirectory(path);
+        if(!isDir)
+        {
+
+            if (!(new File("./Resources")).mkdirs()) {
+                System.out.println("Failed To Create Resources Directory...");
+                return;
+            }
+            return;
+        }
+        fetchUsers();
+    }
     private static void printUserNotes()
     {
         //System.out.println((char)27 + "[31mThis text would show up red" + (char)27 + "[0m");
