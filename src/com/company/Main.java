@@ -36,6 +36,7 @@ public class Main {
                         break;
 
                     default:
+                        System.out.println("\u001B[30m Goodby");
                         System.exit(0);
                 }
             }while(true);
@@ -45,7 +46,7 @@ public class Main {
     private static void printUserNotes()
     {
         //System.out.println((char)27 + "[31mThis text would show up red" + (char)27 + "[0m");
-        System.out.println((char)27 + "[32mRetrieve your notes? Absolutely! \nPlease let know your full name first: \n");
+        System.out.println("\u001B[32mRetrieve your notes? Absolutely! \nPlease let know your full name first: \n");
                 String name = Main.cin.nextLine();
         User exist=Server.checkUserExistance(name);
         if(exist==null)
@@ -56,8 +57,7 @@ public class Main {
         ArrayList<Note> userNotes = exist.getNotes();
         if(!userNotes.equals(null))
         {
-            System.out.println((char)27 + "[34mFound it!\n" +
-                    "Here are your stored notes:\n");
+            System.out.println("\u001B[34mFound it!\nHere are your stored notes:\n");
             for (int i = 0; i < userNotes.size(); i++)
             {
                 System.out.println("-------------");
@@ -112,16 +112,17 @@ public class Main {
 
     private static void showMainMenu()
     {
-        System.out.println("Welcome to the brand new “Sticky Notes”!\n" +
+        System.out.println("\u001B[30mWelcome to the brand new “Sticky Notes”!\n" +
                 "Here is the list of operation this program offers:\n" +
                 "1- Add new user\n" +
                 "2- Add new note\n" +
                 "3- View notes for a specific user\n" +
-                "4- Exit\n");
+                "4- Exit\n\u001B[0m");
     }
     private static void showNewUserMenu()
     {
-        System.out.println("Welcome aboard new user!\n");
+
+        System.out.println("\u001B[36mWelcome aboard new user!\n");
         System.out.println("Please let me know your first name:");
         String firstName=Main.cin.nextLine();
         System.out.println("Great "+ firstName+", now please enter your last name:");
@@ -149,7 +150,7 @@ public class Main {
     private static void addNoteUserMenu()
     {
         System.out.println(
-                "Let’s add a new note ...\n" +
+                "\u001B[36mLet’s add a new note ...\n" +
                 "Please enter your full name first:");
         String firstLastName=Main.cin.nextLine();
         //check Userexistance
