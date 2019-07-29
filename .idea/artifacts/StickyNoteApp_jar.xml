@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="StickyNoteApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/StickyNoteApp_jar</output-path>
+    <root id="archive" name="StickyNoteApp.jar">
+      <element id="module-output" name="StickyNoteApp" />
+    </root>
+  </artifact>
+</component>

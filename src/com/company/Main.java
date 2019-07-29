@@ -44,8 +44,8 @@ public class Main {
 
     private static void printUserNotes()
     {
-        System.out.println("Retrieve your notes? Absolutely! \n" +
-                "Please let know your full name first: \n" );
+        //System.out.println((char)27 + "[31mThis text would show up red" + (char)27 + "[0m");
+        System.out.println((char)27 + "[32mRetrieve your notes? Absolutely! \nPlease let know your full name first: \n");
                 String name = Main.cin.nextLine();
         User exist=Server.checkUserExistance(name);
         if(exist==null)
@@ -56,7 +56,7 @@ public class Main {
         ArrayList<Note> userNotes = exist.getNotes();
         if(!userNotes.equals(null))
         {
-            System.out.println("Found it!\n" +
+            System.out.println((char)27 + "[34mFound it!\n" +
                     "Here are your stored notes:\n");
             for (int i = 0; i < userNotes.size(); i++)
             {
@@ -68,7 +68,7 @@ public class Main {
         {
             System.out.println("Umm, can’t find any saved notes for you.");
         }
-        System.out.println("Click Enter to return to main menu");
+        System.out.println("Click Enter to return to main menu\u001B[0m");
         Main.cin.nextLine();
     }
 
